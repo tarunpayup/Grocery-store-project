@@ -8,6 +8,10 @@ class SignupScreen extends StatefulWidget{
 }
 
 class _SignupScreenState extends State<SignupScreen>{
+  final List<String> states = [
+    "Uttar Pradesh","Delhi","Maharashtra","Rajasthan","Punjab","Haryana","Karnataka","Telangana","Madhya Pradesh"
+  ];
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -62,7 +66,86 @@ class _SignupScreenState extends State<SignupScreen>{
                           color: Color(0xFF2D123B)
                         ),
                       ),
-                    )
+                    ),
+                    const SizedBox(height: 8,),
+                    const Center(
+                      child: Text(
+                        "Create your account to get started",
+                        style: TextStyle(
+                          fontSize: 14, 
+                          color: Color(0xFF2D1438)
+                          ),
+                      ),
+                    ),
+                    const SizedBox(height: 40,),
+                    //Form
+                    TextFormField(
+                      textInputAction: TextInputAction.next,
+                      decoration: const InputDecoration(
+                        label: Text("Full Name"), 
+                         ),
+                         validator: (value){
+                          if(value == null || value.trim().isEmpty){
+                            return "Please enter your name";
+                          }
+                          return null;
+                         },
+                    ),
+                    const SizedBox(height: 20,),
+                    TextFormField(
+                      textInputAction: TextInputAction.next,
+                      decoration: const InputDecoration(
+                        label: Text("Email"), 
+                         ),
+                      validator: (value){
+                        if(value == null || value.trim().isEmpty){
+                          return "Please enter your email";
+                        }
+                        final  emailRegex = RegExp(
+                          r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+                        );
+                        if(!emailRegex.hasMatch(value.trim())){
+                          return "Please enter a valid email value";
+                        }
+                        return null;
+                      },
+                      //Email
+                    ),
+                    const SizedBox(height: 20,),
+                    TextFormField(
+                      textInputAction: TextInputAction.next,
+                      decoration: const InputDecoration(
+                        label: Text("Username"), 
+                         ),
+                      validator: (value){
+                        if(value == null || value.trim().isEmpty){
+                          return "Please enter your username";
+                        }
+                       if(value.trim().length<4){
+                          return "Username must be atleast of 4 characters";
+                       }
+                       return null;
+                      },
+
+                    ),
+                    const SizedBox(height: 20,),
+
+                    DropdownButtonFormField<String>(
+                      items: states.map((state){
+                        return DropdownMenuItem<String>(
+                          value: state, 
+                          child: Text(state)
+                        ,);
+                      }).toList(),
+                      onChanged: (value){
+                        
+                      },
+                      decoration: InputDecoration(
+                        label: Text("State")
+                      ),
+                    ),
+                    
+
                   ],
                 ),
               ),
