@@ -8,10 +8,24 @@ class SignupScreen extends StatefulWidget{
 }
 
 class _SignupScreenState extends State<SignupScreen>{
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController usernameController = TextEditingController(); 
+  String? selectedState;
+  String? selectedCity;
+  
   final List<String> states = [
-    "Uttar Pradesh","Delhi","Maharashtra","Rajasthan","Punjab","Haryana","Karnataka","Telangana","Madhya Pradesh"
+    "Uttar Pradesh","Delhi","Maharashtra","Rajasthan"
   ];
 
+  final Map<String,List<String>> cities = {
+    "Uttar Pradesh" : ["Agra","Lucknow","Meerut","Noida","Kanpur","Varanase"],
+    "Delhi" : ["New Delhi","South Delhi","East Delhi","North Delhi","West Delhi"],
+    "Maharashtra":["Mumbai","Pune","Nagpur","Nashik","Thane"],
+    "Rajasthan":["Jaipur","Jodhpur","Udaipur"],
+  };
+// List -> [] Square brackets; Map -> { } Curly Brackets
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -144,7 +158,12 @@ class _SignupScreenState extends State<SignupScreen>{
                         label: Text("State")
                       ),
                     ),
-                    
+                    const SizedBox(height: 20,),
+
+                    DropdownButtonFormField<String>(
+                      items: , 
+                      onChanged: onChanged
+                      );
 
                   ],
                 ),
